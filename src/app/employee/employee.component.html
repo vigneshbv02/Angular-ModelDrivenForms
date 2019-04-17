@@ -13,7 +13,7 @@
 										<span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
                 </div>
                 <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" formControlName="username">
-                <div class="invalid-feedback">
+                <div class="invalid-feedback" *ngIf="addEmployee.controls.username.dirty && addEmployee.controls.username.touched && addEmployee.controls.username.hasError('required')">
                   Please enter a username
                 </div>
               </div>
@@ -22,7 +22,7 @@
                   <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone"></i></span>
                 </div>
                 <input type="text" class="form-control" placeholder="Phone" aria-label="Phone" aria-describedby="basic-addon1" formControlName="phone">
-                <div class="invalid-feedback">
+                <div class="invalid-feedback" *ngIf="addEmployee.controls.phone.dirty && addEmployee.controls.phone.touched && addEmployee.controls.phone.hasError('required')">
                   Please enter phone number
                 </div>
               </div>
@@ -31,8 +31,11 @@
                   <span class="input-group-text" id="basic-addon1"><i class="fas fa-envelope"></i></span>
                 </div>
                 <input type="text" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1" formControlName="email">
-                <div class="invalid-feedback">
+                <div class="invalid-feedback" *ngIf="addEmployee.controls.email.dirty && addEmployee.controls.email.touched && addEmployee.controls.email.hasError('required')">
                   Please enter Email
+                </div>
+                <div class="invalid-feedback" *ngIf="addEmployee.controls.email.dirty && addEmployee.controls.email.touched && addEmployee.controls.email.hasError('pattern')">
+                  Invalid Email Id
                 </div>
               </div>
               <div class="input-group input-group-sm mb-3">
@@ -40,7 +43,7 @@
                   <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
                 </div>
                 <input type="text" class="form-control" placeholder="Passowrd" aria-label="Passowrd" aria-describedby="basic-addon1" formControlName="password">
-                <div class="invalid-feedback">
+                <div class="invalid-feedback" *ngIf="addEmployee.controls.password.dirty && addEmployee.controls.password.touched && addEmployee.controls.password.hasError('required')">
                   Please enter password
                 </div>
               </div>
@@ -49,7 +52,7 @@
                   <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
                 </div>
                 <input type="text" class="form-control" placeholder="Retype Passowrd" aria-label="Retype Passowrd" aria-describedby="basic-addon1" formControlName="repassword">
-                <div class="invalid-feedback">
+                <div class="invalid-feedback" *ngIf="addEmployee.controls.repassword.dirty && addEmployee.controls.repassword.touched && addEmployee.controls.repassword.hasError('required')">
                   Please re enter password
                 </div>
               </div>
@@ -57,6 +60,10 @@
                 <button class="btn btn-primary btn-sm float-right">Submit</button>
               </div>
               </form>
+              {{addEmployee.controls.username.dirty | json}}
+              {{addEmployee.controls.username.touched | json}}
+              {{addEmployee.controls.email.hasError('pattern') | json}}
+              {{addEmployee.controls.email.errors | json}}
             </div>
           </div>
         </div>
